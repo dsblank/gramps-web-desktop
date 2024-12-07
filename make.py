@@ -19,12 +19,12 @@ def untargz(tar_gz_filename, version, target_dir):
             member.name = member.name.replace(prefix, "")
             tar.extract(member, target_dir)
 
-if os.path.isdir("gramps-web-desktop/frontend"):  
-    shutil.rmtree("gramps-web-desktop/frontend") 
+if os.path.isdir("gramps_web_desktop/frontend"):  
+    shutil.rmtree("gramps_web_desktop/frontend") 
                 
 r = requests.get(LATEST_URL)
 version = r.url.rsplit("/", 1)[1]
 download_url = f"https://github.com/gramps-project/gramps-web/releases/download/{version}/grampsjs-{version}.tar.gz"
 
 download_file(download_url, "gramps-web-frontend.tar.gz")
-untargz("gramps-web-frontend.tar.gz", version, "gramps-web-desktop/frontend")
+untargz("gramps-web-frontend.tar.gz", version, "gramps_web_desktop/frontend")
