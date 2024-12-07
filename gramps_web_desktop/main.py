@@ -10,6 +10,7 @@ import sys
 import tempfile
 import argparse
 
+import gramps
 from gramps.cli.clidbman import CLIDbManager
 from gramps.gen.dbstate import DbState
 from gramps.gen.db.utils import open_database
@@ -62,7 +63,9 @@ def main(raw_args=sys.argv[1:]):
 
 
     if "GRAMPS_RESOURCES" not in os.environ:
-        raise Exception("GRAMPS_RESOURCES needs to be set in environment")
+        os.environ["GRAMPS_RESOURCES"] = os.path.split(
+            os.path.split(gramps.__file__)[0]
+        )[0]
 
     HERE = os.path.abspath(os.path.dirname(__file__))
 
