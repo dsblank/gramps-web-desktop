@@ -29,19 +29,22 @@ def main(raw_args=sys.argv[1:]):
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
     parser.add_argument(
-        "tree",
+        "TREE",
         help="Name of Gramps family tree",
         type=str,
+        nargs='?',
     )
     parser.add_argument(
-        "user",
+        "USER",
         help="User name",
         type=str,
+        nargs='?',
     )
     parser.add_argument(
-        "password",
+        "PASSWORD",
         help="User's password",
         type=str,
+        nargs='?',
     )
     parser.add_argument(
         "--version",
@@ -54,7 +57,7 @@ def main(raw_args=sys.argv[1:]):
     args, rest = parser.parse_known_args(raw_args)
 
     if args.version:
-        print(__version__)
+        print("gramps-web-desktop %s" % __version__)
         sys.exit()
 
 
@@ -68,15 +71,26 @@ def main(raw_args=sys.argv[1:]):
     cli = CLIDbManager(DbState())
     databases = {key: value for key,value in cli.family_tree_list()}
 
-    tree_name = args.tree
+    tree_name = args.TREE
     if tree_name not in databases:
-        raise Exception("Unknown tree: %r" % tree_name)
+        print("Use one of the following as first argument for tree:")
+        for key in databases:
+            print("    %r" % key)
+        sys.exit()
+
+    if args.USER is None or args.PASSWORD is None:
+        print("Requires user and password: gramps-web-desktop TREE USER PASSWORD")
+        sys.exit()
     
     path_to_database = os.path.join(databases[tree_name], "sqlite.db")
     path_to_index_database = os.path.join(databases[tree_name], "index.db")
     secret_key = "my-secret-key"
 
     db = open_database(tree_name)
+    if db is None:
+        print("Database %r is locked" % tree_name)
+        sys.exit()
+        
     media_base_dir = db.get_mediapath().format(**os.environ)
     db.close()
 
@@ -98,7 +112,7 @@ def main(raw_args=sys.argv[1:]):
 
     # First, make a user/password with admin role
     user_exists = False
-    sys.argv = ["gramps_webapi.py", "--config", config_file.name, "user", "add", "--role", "5", args.user, args.password]
+    sys.argv = ["gramps_webapi.py", "--config", config_file.name, "user", "add", "--role", "5", args.USER, args.PASSWORD]
     try:
         runpy.run_module("gramps_webapi", run_name="__main__")
     except ValueError as exc:
@@ -122,5 +136,5 @@ def main(raw_args=sys.argv[1:]):
     # Finally, delete user/password with admin role
 
     if not user_exists:
-        sys.argv = ["gramps_webapi.py", "--config", config_file.name, "user", "delete", args.user]
+        sys.argv = ["gramps_webapi.py", "--config", config_file.name, "user", "delete", args.USER]
         runpy.run_module("gramps_webapi", run_name="__main__")
