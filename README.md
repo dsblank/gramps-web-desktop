@@ -25,12 +25,23 @@ At the console, enter the command:
 ```shell
 gramps-web-desktop TREE USERNAME PASSWORD
 ```
+or:
+
+```shell
+gwd TREE USERNAME PASSWORD
+```
 
 where:
 
 * `TREE` - the the name of the test temporary Gramps family tree name
 * `USERNAME` - this is meant to be a temporary username for this session
 * `PASSWORD` - this is meant to be a temporary password for this session
+
+Example:
+
+```shell
+gwd "Example" my_username _my_password
+```
 
 ### Options
 
