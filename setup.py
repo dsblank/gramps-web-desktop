@@ -34,7 +34,7 @@ setup_args = dict(
     long_description_content_type="text/markdown",
     install_requires=[
         "gramps>=5.2.0",
-        "gramps-webapi>=2.6.0",
+        "gramps-webapi[ai]>=2.6.0",
     ],
     packages=[
         "gramps_web_desktop",
