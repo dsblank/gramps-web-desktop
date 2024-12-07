@@ -1,0 +1,3 @@
+include README.md
+
+recursive-include gramps_web_desktop/frontend *
