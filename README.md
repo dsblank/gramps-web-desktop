@@ -71,12 +71,12 @@ You can also use `gwd` instead of `gramps-web-desktop`.
 ## FAQ
 
 1. Does this use Docker?
-  * No.
+   - No.
 2. Does this expose my data?
-  * This runs on a local port (5000 by default) and people on the local computer can see it
+   - This runs on a local port (5000 by default) and people on the local computer can see it
 3. Can I send email via the app?
-  * No, email services are not enabled
+   - No, email services are not enabled
 4. Will I see my family tree images?
-  * Yes, if you have your mediapath set inside `gramps`
+   - Yes, if you have your mediapath set inside `gramps`
 5. Will this leave a user account with admin access to my tree?
-  * No, the temporary username is deleted when you press CONTROL+C
+   - No, the temporary username is deleted when you press CONTROL+C
