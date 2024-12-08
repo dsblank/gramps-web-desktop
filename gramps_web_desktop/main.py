@@ -63,9 +63,11 @@ def main(raw_args=sys.argv[1:]):
 
 
     if "GRAMPS_RESOURCES" not in os.environ:
-        os.environ["GRAMPS_RESOURCES"] = os.path.split(
-            os.path.split(gramps.__file__)[0]
-        )[0]
+        os.environ["GRAMPS_RESOURCES"] = os.path.expanduser(
+            os.path.split(
+                os.path.split(gramps.__file__)[0]
+            )[0]
+        )
 
     HERE = os.path.abspath(os.path.dirname(__file__))
 
@@ -85,8 +87,8 @@ def main(raw_args=sys.argv[1:]):
         print("Requires user and password: gramps-web-desktop TREE USER PASSWORD")
         sys.exit()
     
-    path_to_database = os.path.join(databases[tree_name], "sqlite.db")
-    path_to_index_database = os.path.join(databases[tree_name], "index.db")
+    path_to_database = os.path.expanduser(os.path.join(databases[tree_name], "sqlite.db"))
+    path_to_index_database = os.path.expanduser(os.path.join(databases[tree_name], "index.db"))
     secret_key = "my-secret-key"
 
     db = open_database(tree_name)
