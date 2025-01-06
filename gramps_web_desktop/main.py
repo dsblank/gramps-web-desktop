@@ -96,7 +96,7 @@ def main(raw_args=sys.argv[1:]):
         print("Database %r is locked" % tree_name)
         sys.exit()
 
-    media_base_dir = db.get_mediapath()
+    media_base_dir = os.path.expanduser(db.get_mediapath())
     if media_base_dir:
         media_base_dir = media_base_dir.format(**os.environ)
     else:
