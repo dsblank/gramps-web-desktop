@@ -33,6 +33,7 @@ setup_args = dict(
     long_description=long_description,
     long_description_content_type="text/markdown",
     install_requires=[
+        "setuptools",
         "gramps>=5.2.0",
         "gramps-webapi>=2.7.0",
     ],
