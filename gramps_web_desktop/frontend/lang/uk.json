@@ -267,5 +267,15 @@
     "Add custom search engine": "Додати користувацьку пошукову систему",
     "Enter a search URL with template variables for person data. Available variables:": "Введіть URL-адресу пошуку зі змінними шаблону для даних особи. Доступні змінні:",
     "e.g., MyGenealogy": "наприклад, МояГенеалогія",
-    "Search URL": "URL-адреса пошуку"
+    "Search URL": "URL-адреса пошуку",
+    "A number": "Число",
+    "A file system path": "Шлях до файлової системи",
+    "Any text": "Будь-який текст",
+    "A list of text values. Each entry in the list represents one line of text.": "Список текстових значень. Кожен запис у списку представляє один рядок тексту.",
+    "Edit repository reference": "Редагувати посилання на репозиторій",
+    "Unsaved changes restored": "Незбережені зміни відновлено",
+    "Uploading file %s of %s": "Завантаження файлу %s з %s",
+    "Select files": "Вибрати файли",
+    "Failed to upload": "Не вдалося завантажити",
+    "Failed to update": "Не вдалося оновити"
 }
